@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: videodb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgres://user:password@db:5432/videodb
+    depends_on:
+      - db
+    volumes:
+      - video_storage:/app/video_storage
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  media-server:
+    build: ./media-server
+    ports:
+      - "1935:1935"
+    volumes:
+      - video_storage:/usr/local/nginx/html/streams
+
+volumes:
+  db_data:
+  video_storage:
