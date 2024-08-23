@@ -35,6 +35,8 @@ services:
     volumes:
       - video_storage:/usr/local/nginx/html/streams
 
+networks: {}
+
 volumes:
   db_data:
   video_storage:
