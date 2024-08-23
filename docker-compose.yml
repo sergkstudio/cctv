@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - ./db_data:/var/lib/postgresql/data
 
   backend:
     build: ./backend
@@ -17,7 +17,7 @@ services:
     depends_on:
       - db
     volumes:
-      - video_storage:/app/video_storage
+      - ./video_storage:/app/video_storage
     ports:
       - "5000:5000"
 
@@ -33,7 +33,7 @@ services:
     ports:
       - "1935:1935"
     volumes:
-      - video_storage:/usr/local/nginx/html/streams
+      - ./video_storage:/usr/local/nginx/html/streams
 
 networks: {}
 
