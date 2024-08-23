@@ -8,4 +8,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 CMD ["flask", "run", "--host=0.0.0.0"]
-CMD ["sh", "-c", "python init_db.py && python app.py"]
