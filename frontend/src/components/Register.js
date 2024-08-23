@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Login() {
+function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = async (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/login', { username, password });
-            localStorage.setItem('token', response.data.access_token);
-            alert('Login successful');
-            // Redirect to protected route
+            await axios.post('/register', { username, password });
+            alert('User registered successfully');
         } catch (error) {
-            alert('Login failed');
+            alert('Registration failed');
         }
     };
 
     return (
         <div>
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
+            <h2>Register</h2>
+            <form onSubmit={handleRegister}>
                 <input
                     type="text"
                     placeholder="Username"
@@ -35,10 +33,10 @@ function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
             </form>
         </div>
     );
 }
 
-export default Login;
+export default Register;
