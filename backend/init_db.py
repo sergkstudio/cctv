@@ -4,9 +4,9 @@ from models import User
 
 def create_admin():
     with app.app_context():
-        admin = User.query.filter_by(username='admin').first()
-        if admin is None:
-            admin = User(username='admin')
+        noc = User.query.filter_by(username='noc').first()
+        if noc is None:
+            noc = User(username='noc')
             admin.set_password('Kolobok201@')  # Задайте безопасный пароль
             admin.is_admin = True
             db.session.add(admin)
