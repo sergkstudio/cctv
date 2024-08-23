@@ -1,6 +1,6 @@
 from flask import request, jsonify, send_file, url_for
-from backend.app_old import app, db
-from backend.models_old import User, Video, SharedStream
+from app import app, db
+from models import User, Video, SharedStream
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from datetime import datetime, timedelta
 import os

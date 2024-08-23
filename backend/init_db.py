@@ -1,6 +1,6 @@
 # backend/init_db.py
-from backend.app_old import app, db
-from backend.models_old import User
+from backend.app import app, db
+from backend.models import User
 
 def create_admin():
     with app.app_context():
