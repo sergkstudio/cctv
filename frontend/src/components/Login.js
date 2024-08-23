@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('/login', { username, password });
       localStorage.setItem('token', response.data.access_token);
-      history.push('/dashboard');
+      navigate('/dashboard');  // Используем useNavigate для перехода
     } catch (error) {
       alert('Invalid credentials');
     }
